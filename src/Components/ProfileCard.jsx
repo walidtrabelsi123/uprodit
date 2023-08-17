@@ -14,8 +14,8 @@ useEffect(() => {
         <li key={item.id} className="card">
                {item.image_id && (
                         <img src={loadedImage} 
-                        height={'300px'}
-                        width={'200px'}
+                        height={'350px'}
+                        width={'400px'}
                         alt={item.denomination} />
                     )}
         <h2>{item.denomination}</h2>

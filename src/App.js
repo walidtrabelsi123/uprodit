@@ -11,11 +11,8 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Testapi />} />
-
       </Routes>
     </BrowserRouter>
-  
-
     </div>
   );
 }

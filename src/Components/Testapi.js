@@ -42,27 +42,20 @@ function Testapi() {
                 speciality.toLowerCase().includes(query)
             );
         });
-    
         setFilteredData(filteredItems);
     };
     
-   
-  //  useEffect(() => {
-    //    generateSignature().then((result) => setAuthorizedKey(result))
-    //},[])
-
     const handleSearch = (event) => {
         const query = event.target.value.toLowerCase();
         setSearchUsername(query);
-      
         const filteredItems = data.filter((item) => {
           return (
-            (item.name && item.name.toLowerCase().includes(query)) || // Search by username
-            (item.surname && item.surname.toLowerCase().includes(query)) || // Search by surname
-            (item.gender && item.gender.toLowerCase().includes(query)) || // Search by gender
+            (item.name && item.name.toLowerCase().includes(query)) || 
+            (item.surname && item.surname.toLowerCase().includes(query)) || 
+            (item.gender && item.gender.toLowerCase().includes(query)) || 
             (item.profile_type && item.profile_type.toLowerCase().includes(query)) ||
             (item.tjm && item.tjm.toLowerCase().includes(query)) ||
-            (item.image_id && item.image_id.toLowerCase && item.image_id.toLowerCase().includes(query)) // Check if image_id is a string before calling toLowerCase()
+            (item.image_id && item.image_id.toLowerCase && item.image_id.toLowerCase().includes(query)) 
           );
         });
       
@@ -110,38 +103,22 @@ function Testapi() {
     }, [authorizedKey]);
 
     
-   // useEffect(() => {
-     //   if (!token) return; // Don't fetch picture data if token is not yet available
-    
-        
-        
-    
-        //fetchData();
-    //}, [token, data, authorizedKey]); // Add token and data as dependencies
-
     const fetchData = async (item) => {
         try {
-            // Iterate over your data and fetch each picture individually
-           
                 const response = await axios.get(`https://api.uprodit.com/v2/profile/picture/f/${item.image_id}`, {
                     headers: {
                         'Authorization': generateSignature(`/v2/profile/picture/f/${item.image_id}`)
                     }
                 });
-    
-                return response.data
-            
+                return response.data   
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
-    
-
     return (
     <div>
              <a href="https://www.uprodit.com/"><Image src={uprodit} alt={'Uprodit'} h={100} /></a>
         <div className="search-container">
-          
             <input
                 type="text"
                 placeholder="Rechercher des freelances(spécialités,compétences...)"
@@ -157,33 +134,13 @@ function Testapi() {
            
         </div>  
         <ul className="card-list">
-        {filteredData.map(item => (
-       < ProfileCard item={item} fetchData={fetchData} />
-        ))}</ul>
+           {filteredData.map(item => (
+            <ProfileCard item={item} fetchData={fetchData} />))}
+        </ul>
         <Box>
-            
-
-            <Box    style={{
-                backgroundColor: '#9ddecf',
-                color: 'gray.700',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                maxWidth: '6xl',
-                padding: '4',
-                margin: '0 auto',
-                borderTopWidth: '1px',
-                borderStyle: 'solid',
-                borderColor: 'gray',
-              }}>
-                <Container
-                as={Stack}
-                maxW={'6xl'}
-                py={4}
-                spacing={4}
-                justify={'center'}
-                align={'center'}>
+            <Box style={{ backgroundColor: '#9ddecf', color: 'gray.700', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+                maxWidth: '6xl', padding: '4', margin: '0 auto', borderTopWidth: '1px',borderStyle: 'solid',borderColor: 'gray', }}>
+            <Container as={Stack} maxW={'6xl'} py={4} spacing={4} justify={'center'} align={'center'}>
                 <Image src={uprodit} alt={'Uprodit'} h={30} />
                 <Stack direction={'row'} spacing={10}>
                     <Link as="a" href={'https://doc.uprodit.com/'} className="footer-link">
@@ -200,14 +157,7 @@ function Testapi() {
                     </Link>
                 </Stack>
             </Container>
-                <Container
-                    as={Stack}
-                    maxW={'6xl'}
-                    py={4}
-                    direction={{ base: 'column', md: 'row' }}
-                    spacing={4}
-                    justify={{ base: 'center', md: 'space-between' }}
-                    align={{ base: 'center', md: 'center' }}>
+                <Container as={Stack} maxW={'6xl'} py={4} direction={{ base: 'column', md: 'row' }} spacing={4} justify={{ base: 'center', md: 'space-between' }} align={{ base: 'center', md: 'center' }}>
                     <Text>
                         © {new Date().getFullYear()} Uprodit Challenge.
                         All rights reserved
@@ -217,22 +167,15 @@ function Testapi() {
                             <FaLinkedinIn className="twitter-link" />
                         </SocialButton>
                         <SocialButton label={'Portfolio'} href={'https://www.linkedin.com/in/trabelsi-walid-861565201/'}>
-                        <TbWorldWww className="portfolio-link" />
+                            <TbWorldWww className="portfolio-link" />
                         </SocialButton>
-                        <SocialButton label={'Github'} href={''}>
-                        <FaGithub className="github-link" />
+                        <SocialButton label={'Github'} href={'https://github.com/walidtrabelsi123'}>
+                            <FaGithub className="github-link" />
                         </SocialButton>
                     </Stack>
                 </Container>
             </Box>
         </Box>
- 
-    </div>
-    
-         
-        );
-      };
-      
-  
+    </div>);};
 export default Testapi;
 
