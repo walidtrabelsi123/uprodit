@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Card.css';
-import { Box, Container, Stack, Link, Text, Image } from '@chakra-ui/react';
+import {  Container, Stack, Link, Text, Image } from '@chakra-ui/react';
 import { FaLinkedinIn, FaGithub } from 'react-icons/fa';
 import uprodit from '../assets/uprodit.png';
-import { TbWorldWww } from 'react-icons/tb';
 import generateSignature from './Utils';
 import ProfileCard from './ProfileCard'
 
@@ -31,7 +30,7 @@ function Testapi() {
     const [filteredData, setFilteredData] = useState([]);
     const [authorizedKey, setAuthorizedKey] = useState(''); 
     const [searchUsername, setSearchUsername] = useState('');
-    const [token, setToken] = useState('');
+    
 
     const handleSearchBySpecialities = event => {
         const query = event.target.value.toLowerCase();
@@ -83,25 +82,7 @@ function Testapi() {
     }, [authorizedKey]);
 
 
-    useEffect(() => {
-        const fetchToken = async () => {
-            try {
-                const response = await axios.post('https://api.uprodit.c+om/v1/token', {
-                    headers: {
-                        'Authorization': authorizedKey,
-                    }
-                });
     
-                setToken(response.data.token);
-                console.log(token);
-            } catch (error) {
-                console.error('Error fetching token:', error);
-            }
-        };
-    
-        fetchToken();
-    }, [authorizedKey]);
-
     
     const fetchData = async (item) => {
         try {
@@ -133,12 +114,14 @@ function Testapi() {
                 className="search-input"/>
            
         </div>  
-        <ul className="card-list">
-           {filteredData.map(item => (
-            <ProfileCard item={item} fetchData={fetchData} />))}
-        </ul>
-        <Box>
-            <Box style={{ backgroundColor: '#9ddecf', color: 'gray.700', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      <ul className="card-list">
+  {filteredData.map(item => (
+    <ProfileCard key={item.id} item={item} fetchData={fetchData} />
+  ))}
+</ul>
+
+        <div>
+            <div style={{ backgroundColor: '#9ddecf', color: 'gray.700', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 maxWidth: '6xl', padding: '4', margin: '0 auto', borderTopWidth: '1px',borderStyle: 'solid',borderColor: 'gray', }}>
             <Container as={Stack} maxW={'6xl'} py={4} spacing={4} justify={'center'} align={'center'}>
                 <Image src={uprodit} alt={'Uprodit'} h={30} />
@@ -159,23 +142,19 @@ function Testapi() {
             </Container>
                 <Container as={Stack} maxW={'6xl'} py={4} direction={{ base: 'column', md: 'row' }} spacing={4} justify={{ base: 'center', md: 'space-between' }} align={{ base: 'center', md: 'center' }}>
                     <Text>
-                        © {new Date().getFullYear()} Uprodit Challenge.
-                        All rights reserved
+                        © {new Date().getFullYear()} Uprodit Challenge. All rights reserved
                     </Text>
                     <Stack direction={'row'} spacing={6}>
                         <SocialButton label={'Twitter'} href={'https://www.linkedin.com/in/trabelsi-walid-861565201/'}>
                             <FaLinkedinIn className="twitter-link" />
-                        </SocialButton>
-                        <SocialButton label={'Portfolio'} href={'https://www.linkedin.com/in/trabelsi-walid-861565201/'}>
-                            <TbWorldWww className="portfolio-link" />
                         </SocialButton>
                         <SocialButton label={'Github'} href={'https://github.com/walidtrabelsi123'}>
                             <FaGithub className="github-link" />
                         </SocialButton>
                     </Stack>
                 </Container>
-            </Box>
-        </Box>
+            </div>
+        </div>
     </div>);};
 export default Testapi;
 
