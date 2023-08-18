@@ -145,7 +145,7 @@ function Testapi() {
                         © {new Date().getFullYear()} Uprodit Challenge. All rights reserved
                     </Text>
                     <Stack direction={'row'} spacing={6}>
-                        <SocialButton label={'Twitter'} href={'https://www.linkedin.com/in/trabelsi-walid-861565201/'}>
+                        <SocialButton label={'Linkedin'} href={'https://www.linkedin.com/in/trabelsi-walid-861565201/'}>
                             <FaLinkedinIn className="twitter-link" />
                         </SocialButton>
                         <SocialButton label={'Github'} href={'https://github.com/walidtrabelsi123'}>
