@@ -124,7 +124,7 @@ function Testapi() {
             <div style={{ backgroundColor: '#9ddecf', color: 'gray.700', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
                 maxWidth: '6xl', padding: '4', margin: '0 auto', borderTopWidth: '1px',borderStyle: 'solid',borderColor: 'gray', }}>
             <Container as={Stack} maxW={'6xl'} py={4} spacing={4} justify={'center'} align={'center'}>
-                <Image src={uprodit} alt={'Uprodit'} h={30} />
+                <Image src={uprodit} alt={'Uprodit'} h={40} />
                 <Stack direction={'row'} spacing={10}>
                     <Link as="a" href={'https://doc.uprodit.com/'} className="footer-link">
                         Documentation
